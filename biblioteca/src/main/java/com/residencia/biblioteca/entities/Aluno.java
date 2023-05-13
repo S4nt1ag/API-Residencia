@@ -26,10 +26,10 @@ public class Aluno {
 	private Date dataNascimento;
 	@Column(name = "cpf")
 	private String cpf;
-	@Column(name = "logadouro")
-	private String logadouro;
-	@Column(name = "numerologadouro")
-	private String numeroLogadouro;
+	@Column(name = "logradouro")
+	private String logradouro;
+	@Column(name = "numerologradouro")
+	private String numeroLogradouro;
 	@Column(name = "complemento")
 	private String complemento;
 	@Column(name = "bairro")
@@ -69,20 +69,20 @@ public class Aluno {
 		this.cpf = cpf;
 	}
 
-	public String getLogadouro() {
-		return logadouro;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setLogadouro(String logadouro) {
-		this.logadouro = logadouro;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
-	public String getNumeroLogadouro() {
-		return numeroLogadouro;
+	public String getNumeroLogradouro() {
+		return numeroLogradouro;
 	}
 
-	public void setNumeroLogadouro(String numeroLogadouro) {
-		this.numeroLogadouro = numeroLogadouro;
+	public void setNumeroLogradouro(String numeroLogradouro) {
+		this.numeroLogradouro = numeroLogradouro;
 	}
 
 	public String getComplemento() {
