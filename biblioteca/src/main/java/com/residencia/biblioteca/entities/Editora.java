@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "editoras")
+@Table(name = "editora")
 public class Editora {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +21,13 @@ public class Editora {
 
 	private String nome;
 
-	@Column(name = "imagemnome")
+	@Column(name = "imagem_nome")
 	private String imagemNome;
 
-	@Column(name = "imagemfilename")
+	@Column(name = "imagem_filename")
 	private String imagemFileName;
 
-	@Column(name = "imagemurl")
+	@Column(name = "imagem_url")
 	private String imagemUrl;
 
 	@OneToMany(mappedBy = "editora")

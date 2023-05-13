@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +30,7 @@ public class LivroController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Livro> getLivroById(Integer id) {
+	public ResponseEntity<Livro> getLivroById(@PathVariable Integer id) {
 		Livro livroResponse = livroService.getLivroById(id);
 
 		if (null == livroResponse) {
@@ -42,17 +44,12 @@ public class LivroController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Livro> saveLivro(Livro livro) {
-		Livro livroResponse = livroService.saveLivro(livro);
-		if (livroResponse == null) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		} else {
-			return new ResponseEntity<>(livroResponse, HttpStatus.OK);
-		}
+	public ResponseEntity<Livro> saveLivro(@RequestBody Livro livro) {
+		return new ResponseEntity<>(livroService.saveLivro(livro), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Livro> updateLivro(Livro livro, Integer id) {
+	public ResponseEntity<Livro> updateLivro(@RequestBody Livro livro,@PathVariable Integer id) {
 		Livro livroResponse = livroService.updateLivro(livro, id);
 		if (livroResponse == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -62,7 +59,7 @@ public class LivroController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> deleteLivro(Integer id) {
+	public ResponseEntity<Boolean> deleteLivro(@PathVariable Integer id) {
 
 		Boolean livroResponse = livroService.deleteLivro(id);
 

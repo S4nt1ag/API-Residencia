@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +30,7 @@ public class EmprestimoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Emprestimo> getEmprestimoById(Integer id) {
+	public ResponseEntity<Emprestimo> getEmprestimoById(@PathVariable Integer id) {
 		Emprestimo emprestimoResponse = emprestimoService.getEmprestimoById(id);
 
 		if (null == emprestimoResponse) {
@@ -42,17 +44,12 @@ public class EmprestimoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Emprestimo> saveEmprestimo(Emprestimo emprestimo) {
-		Emprestimo emprestimoResponse = emprestimoService.saveEmprestimo(emprestimo);
-		if (emprestimoResponse == null) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		} else {
-			return new ResponseEntity<>(emprestimoResponse, HttpStatus.OK);
-		}
+	public ResponseEntity<Emprestimo> saveEmprestimo(@RequestBody Emprestimo emprestimo) {
+		return new ResponseEntity<>(emprestimoService.saveEmprestimo(emprestimo), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Emprestimo> updateEmprestimo(Emprestimo emprestimo, Integer id) {
+	public ResponseEntity<Emprestimo> updateEmprestimo(@RequestBody Emprestimo emprestimo,@PathVariable Integer id) {
 		Emprestimo emprestimoResponse = emprestimoService.updateEmprestimo(emprestimo, id);
 		if (emprestimoResponse == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -62,7 +59,7 @@ public class EmprestimoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> deleteEmprestimo(Integer id) {
+	public ResponseEntity<Boolean> deleteEmprestimo(@PathVariable Integer id) {
 
 		Boolean emprestimoResponse = emprestimoService.deleteEmprestimo(id);
 

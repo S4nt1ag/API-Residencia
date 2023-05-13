@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +30,7 @@ public class AlunoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Aluno> getAlunoById(Integer id) {
+	public ResponseEntity<Aluno> getAlunoById(@PathVariable Integer id) {
 		Aluno alunoResponse = alunoService.getAlunoById(id);
 
 		if (null == alunoResponse) {
@@ -42,17 +44,13 @@ public class AlunoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Aluno> saveAluno(Aluno aluno) {
-		Aluno alunoResponse = alunoService.saveAluno(aluno);
-		if (alunoResponse == null) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		} else {
-			return new ResponseEntity<>(alunoResponse, HttpStatus.OK);
-		}
+	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {
+		return new ResponseEntity<>(alunoService.saveAluno(aluno), HttpStatus.CREATED);
+		
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Aluno> updateAluno(Aluno aluno, Integer id) {
+	public ResponseEntity<Aluno> updateAluno(@RequestBody Aluno aluno,@PathVariable Integer id) {
 		Aluno alunoResponse = alunoService.updateAluno(aluno, id);
 		if (alunoResponse == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -62,7 +60,7 @@ public class AlunoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> deleteAluno(Integer id) {
+	public ResponseEntity<Boolean> deleteAluno(@PathVariable Integer id) {
 
 		Boolean alunoResponse = alunoService.deleteAluno(id);
 

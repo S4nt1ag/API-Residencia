@@ -37,6 +37,9 @@ public class Aluno {
 	@Column(name = "cidade")
 	private String cidade;
 
+	@OneToMany (mappedBy = "aluno")
+	private List<Emprestimo> emprestimos;
+	
 	public Integer getNumeroMatriculaAluno() {
 		return numeroMatriculaAluno;
 	}
@@ -119,7 +122,5 @@ public class Aluno {
 	}
 
 
-	@OneToMany (mappedBy = "aluno")
-	private List<Emprestimo> emprestimos;
 
 }

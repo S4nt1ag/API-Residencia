@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +30,7 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getUsuarioById(Integer id) {
+	public ResponseEntity<Usuario> getUsuarioById(@PathVariable Integer id) {
 		Usuario usuarioResponse = usuarioService.getUsuarioById(id);
 
 		if (null == usuarioResponse) {
@@ -42,17 +44,12 @@ public class UsuarioController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Usuario> saveUsuario(Usuario usuario) {
-		Usuario usuarioResponse = usuarioService.saveUsuario(usuario);
-		if (usuarioResponse == null) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		} else {
-			return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
-		}
+	public ResponseEntity<Usuario> saveUsuario(@RequestBody Usuario usuario) {
+		return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Usuario> updateUsuario(Usuario usuario, Integer id) {
+	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario,@PathVariable Integer id) {
 		Usuario usuarioResponse = usuarioService.updateUsuario(usuario, id);
 		if (usuarioResponse == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -62,7 +59,7 @@ public class UsuarioController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> deleteUsuario(Integer id) {
+	public ResponseEntity<Boolean> deleteUsuario(@PathVariable Integer id) {
 
 		Boolean usuarioResponse = usuarioService.deleteUsuario(id);
 
