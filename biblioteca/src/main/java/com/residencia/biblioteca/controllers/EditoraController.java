@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.residencia.biblioteca.dto.EditoraMinDTO;
 import com.residencia.biblioteca.entities.Editora;
 import com.residencia.biblioteca.services.EditoraService;
 
@@ -43,13 +44,27 @@ public class EditoraController {
 		}
 	}
 
+	@GetMapping("/dto/{id}")
+	public ResponseEntity<EditoraMinDTO> getEditoraDtoById(@PathVariable Integer id) {
+		EditoraMinDTO editoraDtoResponse = editoraService.getEditoraDtoById(id);
+
+		if (null == editoraDtoResponse) {
+
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
+		} else {
+
+			return new ResponseEntity<>(editoraService.getEditoraDtoById(id), HttpStatus.OK);
+		}
+	}
+
 	@PostMapping
 	public ResponseEntity<Editora> saveEditora(@RequestBody Editora editora) {
 		return new ResponseEntity<>(editoraService.saveEditora(editora), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Editora> updateEditora(@RequestBody Editora editora,@PathVariable Integer id) {
+	public ResponseEntity<Editora> updateEditora(@RequestBody Editora editora, @PathVariable Integer id) {
 		Editora editoraResponse = editoraService.updateEditora(editora, id);
 		if (editoraResponse == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
