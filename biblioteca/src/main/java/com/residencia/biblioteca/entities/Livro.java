@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,13 +38,19 @@ public class Livro {
 	@Column(name = "codigoisbn")
 	private Long codigoISBN;
 
+	@JsonManagedReference(value = "livro-back")
 	@OneToMany(mappedBy = "livro")
 	private List<Emprestimo> emprestimos;
-
+	
+	@JsonBackReference(value = "editora-back")
 	@ManyToOne
-	@JoinColumn(name = "codigoeditora", referencedColumnName = "codigoeditora")
+	@JoinColumn(name = "codigoeditora",
+				referencedColumnName = "codigoeditora")
 	private Editora editora;
-
+	
+	
+	/* GETTERS AND SETTERS */
+	
 	public Integer getCodigoLivro() {
 		return codigoLivro;
 	}
@@ -97,12 +106,11 @@ public class Livro {
 	public void setEditora(Editora editora) {
 		this.editora = editora;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(codigoLivro);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

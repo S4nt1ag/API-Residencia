@@ -3,6 +3,8 @@ package com.residencia.biblioteca.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,20 +20,23 @@ public class Editora {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigoeditora")
 	private Integer codigoEditora;
-
+	
 	private String nome;
-
+	
 	@Column(name = "imagem_nome")
 	private String imagemNome;
-
+	
 	@Column(name = "imagem_filename")
 	private String imagemFileName;
-
+	
 	@Column(name = "imagem_url")
 	private String imagemUrl;
-
+	
+	@JsonManagedReference(value = "editora-back")
 	@OneToMany(mappedBy = "editora")
 	private List<Livro> livros;
+
+	
 
 	public Integer getCodigoEditora() {
 		return codigoEditora;
@@ -97,5 +102,6 @@ public class Editora {
 		Editora other = (Editora) obj;
 		return Objects.equals(codigoEditora, other.codigoEditora);
 	}
-
+	
+	
 }
