@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.residencia.biblioteca.dto.AlunoResumidoDTO;
 import com.residencia.biblioteca.entities.Aluno;
 import com.residencia.biblioteca.services.AlunoService;
 
@@ -40,6 +41,17 @@ public class AlunoController {
 		} else {
 
 			return new ResponseEntity<>(alunoService.getAlunoById(id), HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/{id}/emprestimos")
+	public ResponseEntity<AlunoResumidoDTO> getAlunoEmprestimosDto(@PathVariable Integer id) {
+
+		AlunoResumidoDTO alunoResumidoDto = alunoService.getAlunoEmprestimosDto(id);
+		if (alunoResumidoDto == null) {
+			return new ResponseEntity<>(alunoResumidoDto, HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(alunoResumidoDto, HttpStatus.FOUND);
 		}
 	}
 

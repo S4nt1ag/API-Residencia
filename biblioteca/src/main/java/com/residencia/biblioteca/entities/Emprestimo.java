@@ -1,7 +1,6 @@
 package com.residencia.biblioteca.entities;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -34,13 +33,13 @@ public class Emprestimo {
 	private Livro livro;
 
 	@Column(name = "dataemprestimo")
-	private Calendar dataEmprestimo;
+	private Date dataEmprestimo;
 
 	@Column(name = "dataentrega")
-	private Calendar dataEntrega;
+	private Date dataEntrega;
 
 	@Column(name = "valoremprestimo")
-	private BigDecimal valorEmprestimo;
+	private Integer valorEmprestimo;
 
 	public Integer getCodigoEmprestimo() {
 		return codigoEmprestimo;
@@ -66,27 +65,27 @@ public class Emprestimo {
 		this.livro = livro;
 	}
 
-	public Calendar getDataEmprestimo() {
+	public Date getDataEmprestimo() {
 		return dataEmprestimo;
 	}
 
-	public void setDataEmprestimo(Calendar dataEmprestimo) {
+	public void setDataEmprestimo(Date dataEmprestimo) {
 		this.dataEmprestimo = dataEmprestimo;
 	}
 
-	public Calendar getDataEntrega() {
+	public Date getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setDataEntrega(Calendar dataEntrega) {
+	public void setDataEntrega(Date dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 
-	public BigDecimal getValorEmprestimo() {
+	public Integer getValorEmprestimo() {
 		return valorEmprestimo;
 	}
 
-	public void setValorEmprestimo(BigDecimal valorEmprestimo) {
+	public void setValorEmprestimo(Integer valorEmprestimo) {
 		this.valorEmprestimo = valorEmprestimo;
 	}
 
