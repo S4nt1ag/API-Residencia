@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.residencia.biblioteca.dto.EditoraResumidaDTO;
-import com.residencia.biblioteca.dto.LivroResumidoDTO;
+import com.residencia.biblioteca.dto.EditoraMinDTO;
+import com.residencia.biblioteca.dto.LivroMinDTO;
 import com.residencia.biblioteca.entities.Editora;
 import com.residencia.biblioteca.entities.Livro;
 import com.residencia.biblioteca.repositories.EditoraRepository;
@@ -26,9 +26,9 @@ public class EditoraService {
 		return editoraRepository.findById(id).orElse(null);
 	}
 
-	public EditoraResumidaDTO getEditoraDtoById(Integer id) {
+	public EditoraMinDTO getEditoraDtoById(Integer id) {
 		Editora editora = editoraRepository.findById(id).orElse(null);
-		EditoraResumidaDTO editoraMinDTO = new EditoraResumidaDTO();
+		EditoraMinDTO editoraMinDTO = new EditoraMinDTO();
 
 		if (editora == null)
 			return null;
@@ -36,9 +36,9 @@ public class EditoraService {
 		editoraMinDTO.setCodigoEditora(editora.getCodigoEditora());
 		editoraMinDTO.setNome(editora.getNome());
 
-		List<LivroResumidoDTO> listaLivroMinDTO = new ArrayList<>();
+		List<LivroMinDTO> listaLivroMinDTO = new ArrayList<>();
 		for (Livro livro : editora.getLivros()) {
-			LivroResumidoDTO livroMinDTO = new LivroResumidoDTO();
+			LivroMinDTO livroMinDTO = new LivroMinDTO();
 			livroMinDTO.setNomeLivro(livro.getNomeLivro());
 			livroMinDTO.setNomeAutor(livro.getNomeAutor());
 			livroMinDTO.setDataLancamento(livro.getDataLancamento());

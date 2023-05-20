@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.residencia.biblioteca.dto.EditoraResumidaDTO;
+import com.residencia.biblioteca.dto.EditoraMinDTO;
 import com.residencia.biblioteca.entities.Editora;
 import com.residencia.biblioteca.services.EditoraService;
 
@@ -45,8 +45,8 @@ public class EditoraController {
 	}
 
 	@GetMapping("/dto/{id}")
-	public ResponseEntity<EditoraResumidaDTO> getEditoraDtoById(@PathVariable Integer id) {
-		EditoraResumidaDTO editoraDtoResponse = editoraService.getEditoraDtoById(id);
+	public ResponseEntity<EditoraMinDTO> getEditoraDtoById(@PathVariable Integer id) {
+		EditoraMinDTO editoraDtoResponse = editoraService.getEditoraDtoById(id);
 
 		if (null == editoraDtoResponse) {
 
