@@ -2,26 +2,26 @@ package com.residencia.biblioteca.dto;
 
 import java.util.List;
 
-public class EditoraMinDTO {
+public class EditoraResumidaDTO {
 
 	private Integer codigoEditora;
 	private String nome;
-	private List<LivroMinDTO> listaLivroMinDto;
+	private List<LivroResumidoDTO> listaLivroMinDto;
 
-	public EditoraMinDTO() {
+	public EditoraResumidaDTO() {
 
 	}
 
-	public EditoraMinDTO(Integer codigoEditora, String nome) {
+	public EditoraResumidaDTO(Integer codigoEditora, String nome) {
 		this.codigoEditora = codigoEditora;
 		this.nome = nome;
 	}
 
-	public List<LivroMinDTO> getListaLivroMinDto() {
+	public List<LivroResumidoDTO> getListaLivroMinDto() {
 		return listaLivroMinDto;
 	}
 
-	public void setListaLivroMinDto(List<LivroMinDTO> listaLivroMinDto) {
+	public void setListaLivroMinDto(List<LivroResumidoDTO> listaLivroMinDto) {
 		this.listaLivroMinDto = listaLivroMinDto;
 	}
 

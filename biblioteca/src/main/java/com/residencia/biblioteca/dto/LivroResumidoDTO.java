@@ -2,16 +2,16 @@ package com.residencia.biblioteca.dto;
 
 import java.util.Date;
 
-public class LivroMinDTO {
+public class LivroResumidoDTO {
 
 	private String nomeLivro;
 	private String nomeAutor;
 	private Date dataLancamento;
 
-	public LivroMinDTO() {
+	public LivroResumidoDTO() {
 	}
 
-	public LivroMinDTO(String nomeLivro, String nomeAutor, Date dataLancamento) {
+	public LivroResumidoDTO(String nomeLivro, String nomeAutor, Date dataLancamento) {
 		this.nomeLivro = nomeLivro;
 		this.nomeAutor = nomeAutor;
 		this.dataLancamento = dataLancamento;
