@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.residencia.biblioteca.dto.AlunoDTO;
 import com.residencia.biblioteca.dto.AlunoResumidoDTO;
 import com.residencia.biblioteca.entities.Aluno;
 import com.residencia.biblioteca.services.AlunoService;
@@ -60,11 +59,6 @@ public class AlunoController {
 	public ResponseEntity<Aluno> saveAluno(@RequestBody Aluno aluno) {
 		return new ResponseEntity<>(alunoService.saveAluno(aluno), HttpStatus.CREATED);
 		
-	}
-	
-	@PostMapping("/dto")
-	public ResponseEntity<AlunoDTO> saveAlunoDTO(@RequestBody AlunoDTO alunoDto) {
-		return new ResponseEntity<>(alunoService.saveAlunoDto(alunoDto), HttpStatus.CREATED);	
 	}
 
 	@PutMapping("/{id}")

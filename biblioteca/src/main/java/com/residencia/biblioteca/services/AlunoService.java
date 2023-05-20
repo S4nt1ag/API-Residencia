@@ -3,11 +3,9 @@ package com.residencia.biblioteca.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.residencia.biblioteca.dto.AlunoDTO;
 import com.residencia.biblioteca.dto.AlunoResumidoDTO;
 import com.residencia.biblioteca.dto.EmprestimoResumidoDTO;
 import com.residencia.biblioteca.dto.LivroResumidoDTO;
@@ -28,7 +26,7 @@ public class AlunoService {
 	public Aluno getAlunoById(Integer id) {
 		return alunoRepository.findById(id).orElse(null);
 	}
-
+	
 	public AlunoResumidoDTO getAlunoEmprestimosDto(Integer id) {
 		Aluno alunoResponse = alunoRepository.findById(id).orElse(null);
 
@@ -65,17 +63,6 @@ public class AlunoService {
 
 	public Aluno saveAluno(Aluno aluno) {
 		return alunoRepository.save(aluno);
-	}
-
-	public AlunoDTO saveAlunoDto(AlunoDTO alunoDto) {
-
-		ModelMapper modelMapper = new ModelMapper();
-
-		Aluno aluno = modelMapper.map(alunoDto, Aluno.class);
-
-		alunoRepository.save(aluno);
-
-		return modelMapper.map(aluno, AlunoDTO.class);
 	}
 
 	public Aluno updateAluno(Aluno aluno, Integer id) {
