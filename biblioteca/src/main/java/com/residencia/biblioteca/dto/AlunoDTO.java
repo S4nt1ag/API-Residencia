@@ -3,28 +3,27 @@ package com.residencia.biblioteca.dto;
 import java.util.Date;
 
 public class AlunoDTO {
-
 	private Integer numeroMatriculaAluno;
 	private String nome;
 	private Date dataNascimento;
-	private String cpf;
+	private String CPF;
 	private String logradouro;
 	private String numeroLogradouro;
 	private String complemento;
 	private String bairro;
 	private String cidade;
-
+	
 	public AlunoDTO() {
 		super();
 	}
 
-	public AlunoDTO(Integer numeroMatriculaAluno, String nome, Date dataNascimento, String cpf, String logradouro,
+	public AlunoDTO(Integer numeroMatriculaAluno, String nome, Date dataNascimento, String cPF, String logradouro,
 			String numeroLogradouro, String complemento, String bairro, String cidade) {
 		super();
 		this.numeroMatriculaAluno = numeroMatriculaAluno;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
-		this.cpf = cpf;
+		CPF = cPF;
 		this.logradouro = logradouro;
 		this.numeroLogradouro = numeroLogradouro;
 		this.complemento = complemento;
@@ -56,12 +55,12 @@ public class AlunoDTO {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCPF() {
+		return CPF;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCPF(String cPF) {
+		CPF = cPF;
 	}
 
 	public String getLogradouro() {
@@ -103,5 +102,5 @@ public class AlunoDTO {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-
+	
 }

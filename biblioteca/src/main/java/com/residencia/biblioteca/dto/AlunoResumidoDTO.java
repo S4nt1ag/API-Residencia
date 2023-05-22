@@ -1,50 +1,49 @@
+
 package com.residencia.biblioteca.dto;
 
 import java.util.List;
 
-public class AlunoResumidoDTO {
-
-	private String nome;
-	private String cpf;
-	private List<EmprestimoResumidoDTO> listaEmprestimoResumidoDTO;
-
+public class AlunoResumidoDTO { 
+	  private String nome; 
+	  private String CPF;
+	  private List<EmprestimoResumidoDTO> listaEmprestimoResDto;
+	  
 	public AlunoResumidoDTO() {
+	}
+	  
+	public AlunoResumidoDTO(String nome, String cPF) {
 		super();
-	}
-
-	public AlunoResumidoDTO(String nome, String cpf) {
 		this.nome = nome;
-		this.cpf = cpf;
+		CPF = cPF;
 	}
-
-	public AlunoResumidoDTO(String nome, String cpf, List<EmprestimoResumidoDTO> listaEmprestimoResumidoDTO) {
+	
+	public AlunoResumidoDTO(String nome, String cPF, List<EmprestimoResumidoDTO> listaEmprestimoResDto) {
+		super();
 		this.nome = nome;
-		this.cpf = cpf;
-		this.listaEmprestimoResumidoDTO = listaEmprestimoResumidoDTO;
-	}
-
-	public List<EmprestimoResumidoDTO> getListaEmprestimoResumidoDTO() {
-		return listaEmprestimoResumidoDTO;
-	}
-
-	public void setListaEmprestimoResumidoDTO(List<EmprestimoResumidoDTO> listaEmprestimoResumidoDTO) {
-		this.listaEmprestimoResumidoDTO = listaEmprestimoResumidoDTO;
+		CPF = cPF;
+		this.listaEmprestimoResDto = listaEmprestimoResDto;
 	}
 
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getCpf() {
-		return cpf;
+	public String getCPF() {
+		return CPF;
+	}
+	public void setCPF(String cPF) {
+		CPF = cPF;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public List<EmprestimoResumidoDTO> getListaEmprestimoResDto() {
+		return listaEmprestimoResDto;
 	}
 
-}
+	public void setListaEmprestimoResDto(List<EmprestimoResumidoDTO> listaEmprestimoResDto) {
+		this.listaEmprestimoResDto = listaEmprestimoResDto;
+	}
+	 
+  }
+ 

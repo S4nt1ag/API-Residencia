@@ -1,8 +1,12 @@
 package com.residencia.biblioteca.entities;
 
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,56 +17,51 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoEmprestimo"
+		)
 @Entity
 @Table(name = "emprestimo")
-public class Emprestimo {
+public class Emprestimo{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigoemprestimo")
 	private Integer codigoEmprestimo;
-
-	@JsonBackReference(value = "aluno-back")
-	@ManyToOne
-	@JoinColumn(name = "numeromatriculaaluno", referencedColumnName = "numeromatriculaaluno")
-	private Aluno aluno;
-
-	@JsonBackReference(value = "livro-back")
-	@ManyToOne
-	@JoinColumn(name = "codigolivro", referencedColumnName = "codigolivro")
-	private Livro livro;
-
+	
+//	private Integer codigoLivro;
+	
 	@Column(name = "dataemprestimo")
 	private Date dataEmprestimo;
-
+	
 	@Column(name = "dataentrega")
 	private Date dataEntrega;
-
+	
 	@Column(name = "valoremprestimo")
-	private Integer valorEmprestimo;
-
+	private BigDecimal valorEmprestimo;
+	
+	//@JsonBackReference(value = "aluno-back")
+	//coluna do emprestimo references coluna do aluno
+	@ManyToOne
+	@JoinColumn(name = "numeromatriculaaluno",
+				referencedColumnName = "numeromatriculaaluno")
+	private Aluno aluno;
+	
+	//@JsonBackReference(value = "livro-back")
+	@ManyToOne
+	@JoinColumn(name = "codigolivro",
+	referencedColumnName = "codigolivro")
+	//Um emprestimo possui vários livros.
+	private Livro livro;
+	
+	
 	public Integer getCodigoEmprestimo() {
 		return codigoEmprestimo;
 	}
 
 	public void setCodigoEmprestimo(Integer codigoEmprestimo) {
 		this.codigoEmprestimo = codigoEmprestimo;
-	}
-
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-	public Livro getLivro() {
-		return livro;
-	}
-
-	public void setLivro(Livro livro) {
-		this.livro = livro;
 	}
 
 	public Date getDataEmprestimo() {
@@ -81,12 +80,46 @@ public class Emprestimo {
 		this.dataEntrega = dataEntrega;
 	}
 
-	public Integer getValorEmprestimo() {
+	public BigDecimal getValorEmprestimo() {
 		return valorEmprestimo;
 	}
 
-	public void setValorEmprestimo(Integer valorEmprestimo) {
+	public void setValorEmprestimo(BigDecimal valorEmprestimo) {
 		this.valorEmprestimo = valorEmprestimo;
 	}
 
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public Livro getLivro() {
+		return livro;
+	}
+
+	public void setLivro(Livro livro) {
+		this.livro = livro;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(codigoEmprestimo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Emprestimo other = (Emprestimo) obj;
+		return Objects.equals(codigoEmprestimo, other.codigoEmprestimo);
+	}
+	
+	
 }
